@@ -16,6 +16,15 @@ st.write("Analyze and optimize school meal distribution using data-driven insigh
 st.subheader("📥 Input")
 
 attendance = st.number_input("Enter Attendance", min_value=0, step=1)
+total_records = len(df)
+avg_attendance = int(df["attendance"].mean())
+avg_meals = int(df["meals_served"].mean())
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Total Records", total_records)
+col2.metric("Avg Attendance", avg_attendance)
+col3.metric("Avg Meals Served", avg_meals)
 
 # ---------------- LOGIC ----------------
 if attendance > 0:
@@ -64,3 +73,6 @@ st.subheader("📌 System Insights")
 shortage_days = (df["meals_served"] < df["attendance"]).sum()
 
 st.write(f"Total shortage days in dataset: {shortage_days}")
+st.markdown("---")
+st.subheader("🎯 Objective")
+st.write("This system helps optimize meal allocation and reduce shortages using data-driven insights.")
